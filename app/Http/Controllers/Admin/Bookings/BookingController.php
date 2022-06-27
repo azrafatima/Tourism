@@ -23,7 +23,8 @@ class BookingController extends Controller
         $transports = Transports::all();
         $hotels = Hotels::all();
         $travel_agencies = TravelAgency::all();
-        return view('frontend.booking.tour_booking',compact('transports','hotels','travel_agencies'));
+        $packages = Package::all();
+        return view('frontend.booking.tour_booking',compact('transports','hotels','travel_agencies','packages'));
     }
 
     /**
@@ -54,7 +55,7 @@ class BookingController extends Controller
             'covid_19_status'=>'required',
             'covid_19_certificate'=>'required|image|mimes:jpeg,jpg,png,pdf',
         ]);
-        if(isset($request->transport_id,$request->hotel_id,$request->travel_agency_id)){
+        if(isset($request->transport_id,$request->hotel_id,$request->travel_agency_id,$request->package_id)){
 
         $data = $request->except(['_token','covid_19_certificate']);
         $data['user_id'] = Auth::user()->id;

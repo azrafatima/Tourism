@@ -28,12 +28,12 @@
                     <tbody style="color: #fff">
                         @foreach ($tours as $tour)
                             
-                        @if($tour->transport_id != null && $tour->hotel_id != null && $tour->travel_agency_id != null )
+                        @if($tour->transport_id != null && $tour->hotel_id != null && $tour->travel_agency_id != null && $tour->package_id != null)
                             <tr>
                                 <td>{{$tour->transport->name}}</td>
                                 <td>{{$tour->hotel->hotel_name}}</td>
                                 <td>{{$tour->travel->Name}}</td>
-                                <td></td>
+                                <td>{{ $tour->package->package_name }}</td>
                                 <td style="font-size: 1.5rem">
                                     @if($tour->status == 'pending')
                                     <span class="badge bg-info">{{ $tour->status }}</span>
